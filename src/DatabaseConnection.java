@@ -9,8 +9,7 @@ public class DatabaseConnection {
     private static DatabaseConnection dbIsntance = null;
     private static Connection con;
 
-    private DatabaseConnection() {
-    }
+    private DatabaseConnection() {}
 
     public static DatabaseConnection getInstance() {
         if (dbIsntance == null) {
@@ -19,7 +18,7 @@ public class DatabaseConnection {
         return dbIsntance;
     }
 
-    public Connection getConnection() throws Exception {
+    public synchronized Connection getConnection() throws Exception {
         if (con == null || con.isClosed()) {
             String url = "jdbc:mysql://localhost:3306/";
             String dbName = "db";
